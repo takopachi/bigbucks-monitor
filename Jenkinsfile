@@ -18,7 +18,7 @@ pipeline {
                 withCredentials([sshUserPrivateKey(credentialsId: 'monitor-key', keyFileVariable: 'SSH_KEY', usernameVariable: 'SSH_USER')]) {
                     sh '''
                         scp -i "$SSH_KEY" -o StrictHostKeyChecking=no -r Jenkinsfile app.py deploy.sh requirements.txt static templates "$SSH_USER@$REMOTE_HOST:$REMOTE_DIR/"
-                        ssh -i "$SSH_KEY" -o StrictHostKeyChecking=no "$SSH_USER@$REMOTE_HOST" "$REMOTE_DIR/deploy.sh"
+                        ssh -i "$SSH_KEY" -o StrictHostKeyChecking=no "$SSH_USER@$REMOTE_HOST" "sudo $REMOTE_DIR/deploy.sh"
                     '''
                 }
             }
