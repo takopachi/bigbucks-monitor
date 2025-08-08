@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Clone Repo') {
             steps {
-                git 'https://github.com/takopachi/bigbucks-monitor.git'
+                git branch: 'main', url: 'https://github.com/takopachi/bigbucks-monitor.git'
             }
         }
         stage('Deploy to Monitor Server') {
